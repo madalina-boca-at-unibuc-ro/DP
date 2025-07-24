@@ -15,7 +15,7 @@ sys.path.insert(0, src_path)
 os.chdir(src_path)
 
 # Import and run the main application
-from main import pendulum_animation, trajectory_animation
+from main import pendulum_animation, trajectory_animation, poincare_animation
 
 if __name__ == "__main__":
     mode_arg = "plot"
@@ -31,6 +31,8 @@ if __name__ == "__main__":
             pendulum_animation()
         elif type_arg == "trajectory":
             trajectory_animation()
+        elif type_arg == "Poincare":
+            poincare_animation()
         else:
             print(f"Invalid type: {type_arg}")
             sys.exit(1)

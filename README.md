@@ -53,7 +53,7 @@ pip install numpy scipy matplotlib
 
 ## Usage
 
-Run the simulation using the provided launcher script:
+Run the simulation using one of the following:
 
 ```bash
 python run.py animate pendulum
@@ -64,6 +64,7 @@ This will:
 2. Launch the double pendulum animation
 3. Display the real-time motion with a trail showing the path of the lower mass
 
+OR
 
 ```bash
 python run.py animate trajectory
@@ -72,7 +73,7 @@ python run.py animate trajectory
 This will:
 1. Set up the Python path to include the `src` directory
 2. Launch the double pendulum trajectory animation
-3. Display the motion of the representative point in the space $\theta_1$, $\theta_2$ in its time evolution
+3. Display the motion of the representative point in the space $o_1$, $o_2$ in its time evolution. $o_1$ and $o_2$ are chosen from $\theta_1$, $\theta_2$, $\omega_1$, $\omega_2$, $p_1$, $p_2$ through the variables '''i1''', '''i2''' in the trajectory_animation() function.
 
 
 ## Configuration
