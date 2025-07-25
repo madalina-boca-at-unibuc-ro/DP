@@ -346,7 +346,7 @@ def poincare_animation():
     ax.set_ylim(-1.2, 1.2)
     ax.set_xlabel(labels[i1])
     ax.set_ylabel(labels[i2])
-    (trail,) = ax.plot([], [], "o", color="r", alpha=0.4, markersize=0.5)
+    (trail,) = ax.plot([], [], ".", color="r", alpha=0.2, markersize=0.1)
 
     q1_trail, q2_trail = [], []
     animation_title = ax.set_title("")
@@ -385,6 +385,3 @@ def poincare_animation():
     )
 
     plt.show()
-
-    for i in range(len(Observables[0])):
-        print(Observables[:, i])
