@@ -73,7 +73,7 @@ python run.py animate trajectory
 This will:
 1. Set up the Python path to include the `src` directory
 2. Launch the double pendulum trajectory animation
-3. Display the motion of the representative point in the space $o_1$, $o_2$ in its time evolution. $o_1$ and $o_2$ are chosen from $\theta_1$, $\theta_2$, $\omega_1$, $\omega_2$, $p_1$, $p_2$ through the variables '''i1''', '''i2''' in the trajectory_animation() function.
+3. Display the motion of the representative point in the space $o_1$, $o_2$ in its time evolution. $o_1$ and $o_2$ are chosen from $\theta_1$, $\theta_2$, $\omega_1$, $\omega_2$, $p_1$, $p_2$ through the variables `i1`, `i2` in the trajectory_animation() function.
 
 
 ## Configuration
@@ -89,8 +89,8 @@ The simulation parameters can be modified in `src/main.py`:
     are fixed through the total energy DeltaE
 
 - **Simulation Parameters**:
-  - `t_span = (0, 100)` seconds (simulation duration)
-  - `t_eval = np.linspace(*t_span, 10000)` (time points for integration)
+  - `t_span = (0, tf)`  `tf` seconds (simulation duration)
+  - `t_eval = np.linspace(*t_span, np)` ( `np` time points for integration)
 
 ## Project Structure
 
