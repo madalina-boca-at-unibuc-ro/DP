@@ -1,6 +1,5 @@
-#!/home/madalina/soft/py_env/bin/python3
 """
-Launcher script for the SRT (Special Relativity Theory) simulator.
+Launcher script for theDP (double pendulum) simulator.
 This script ensures the src directory is in the Python path and launches the application.
 """
 
@@ -18,7 +17,7 @@ os.chdir(src_path)
 from main import pendulum_animation, trajectory_animation, poincare_animation
 
 if __name__ == "__main__":
-    mode_arg = "plot"
+    mode_arg = "animate"
     type_arg = "pendulum"
 
     if len(sys.argv) > 1:
@@ -36,8 +35,6 @@ if __name__ == "__main__":
         else:
             print(f"Invalid type: {type_arg}")
             sys.exit(1)
-    elif mode_arg == "plot":
-        pass
     else:
         print(f"Invalid mode: {mode_arg}")
         sys.exit(1)

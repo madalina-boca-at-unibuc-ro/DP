@@ -37,6 +37,7 @@ Where the coupling terms depend on the relative positions and velocities of the 
 - NumPy
 - SciPy
 - Matplotlib
+- Tqdm
 
 ## Installation
 
@@ -48,7 +49,7 @@ cd DP
 
 2. Install the required dependencies:
 ```bash
-pip install numpy scipy matplotlib
+pip install numpy scipy matplotlib tqdm
 ```
 
 ## Usage
@@ -74,6 +75,17 @@ This will:
 1. Set up the Python path to include the `src` directory
 2. Launch the double pendulum trajectory animation
 3. Display the motion of the representative point in the space $o_1$, $o_2$ in its time evolution. $o_1$ and $o_2$ are chosen from $\theta_1$, $\theta_2$, $\omega_1$, $\omega_2$, $p_1$, $p_2$ through the variables `i1`, `i2` in the trajectory_animation() function.
+
+
+
+```bash
+python run.py animate Poincare
+```
+
+This will:
+1. Set up the Python path to include the `src` directory
+2. Launch the double pendulum trajectory calculation 
+4. Compute `Np` points from the Poincare map in the coordinates $o_1$, $o_2$ at constant $o_p$; $o_1$, $o_2$, $o_p$ can be chosen from  $\theta_1$, $\theta_2$, $\omega_1$, $\omega_2$, $p_1$, $p_2$ through the variables `i1`, `i2`, `i_section` in the trajectory_Poincare() function.
 
 
 ## Configuration
