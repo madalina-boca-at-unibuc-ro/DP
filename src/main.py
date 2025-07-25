@@ -3,6 +3,7 @@ from scipy.integrate import solve_ivp
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from tqdm import tqdm
+import time
 
 # Constants
 g = 10  # m/s^2 (for simplicity g = 10)
@@ -120,6 +121,11 @@ def pendulum_animation():
         interval=20,
     )
     plt.title("Double Pendulum Animation (Lagrange equations)")
+
+    print("Saving pendulum_animation.mp4...")
+    ani.save("pendulum_animation.mp4", writer="ffmpeg", fps=60)
+    print("Animation saved.")
+
     plt.show()
 
 
@@ -131,7 +137,7 @@ def normalize_vector_angle(angle):
     normalized_angle = np.where(
         normalized_angle < -np.pi, normalized_angle + 2 * np.pi, normalized_angle
     )
-    return normalized_angle / np.pi
+    return normalized_angle
 
 
 def normalize_angle(angle):
@@ -142,7 +148,7 @@ def normalize_angle(angle):
     normalized_angle = (
         normalized_angle + 2 * np.pi if normalized_angle < -np.pi else normalized_angle
     )
-    return normalized_angle / np.pi
+    return normalized_angle
 
 
 def compute_observables(y):
@@ -168,13 +174,33 @@ def compute_observables(y):
     return [q1, q2, omega1, omega2, p1, p2, T + V]
 
 
+def interpolate_observables(observable_old, observable_new, i_section):
+    a_1 = observable_old[i_section]
+    a_2 = observable_new[i_section]
+
+    if a_1 * a_2 > 0:
+        print("The section is not crossed")
+        exit()
+    else:
+        observable = np.zeros(len(observable_old))
+        slope = -a_1 / (a_2 - a_1)
+        for i in range(len(observable_old)):
+            b_1 = observable_old[i]
+            b_2 = observable_new[i]
+            res = slope * (b_2 - b_1) + b_1
+            if i == 0 or i == 1:
+                res = normalize_angle(res)
+            observable[i] = res
+        return observable
+
+
 labels = ["q1", "q2", "omega1", "omega2", "p1", "p2"]
 
 
 def trajectory_animation():
     # index  of the observable to plot
     i1 = 0
-    i2 = 2
+    i2 = 1
     """
     index = 0  - q1 (normalized)
     index = 1  - q2 (normalized)
@@ -241,6 +267,11 @@ def trajectory_animation():
         interval=2,
     )
     plt.title("Double Pendulum trajectory (" + labels[i1] + ", " + labels[i2] + ")")
+
+    print("Saving trajectory_animation.mp4...")
+    ani.save("trajectory_animation.mp4", writer="ffmpeg", fps=60)
+    print("Animation saved.")
+
     plt.show()
 
 
@@ -250,7 +281,7 @@ def poincare_animation():
 
     # index  of the observable to plot
     i1 = 0
-    i2 = 5
+    i2 = 1
 
     # index of the section of the trajectory to plot
     i_section = 4
@@ -291,7 +322,9 @@ def poincare_animation():
         y = sol.y[:, -1]
         observable_new = compute_observables(y)
         if observable_new[i_section] * observable_old[i_section] < 0:
-            Observables[:, N_filled_points] = observable_new
+            Observables[:, N_filled_points] = interpolate_observables(
+                observable_old, observable_new, i_section
+            )
             N_filled_points += 1
             pbar.update(1)
         observable_old = observable_new
@@ -299,10 +332,9 @@ def poincare_animation():
         y0 = y
     pbar.close()
 
-    # normalize the observables
-    Observables[0] = normalize_vector_angle(Observables[0])
-    Observables[1] = normalize_vector_angle(Observables[1])
-    for i in range(2, 6):
+    for i in range(0, 2):
+        Observables[i] /= np.pi  # normalize the observables
+    for i in range(2, 5):
         den = np.max(np.abs(Observables[i]))
         if den != 0:
             Observables[i] = Observables[i] / den
@@ -314,18 +346,33 @@ def poincare_animation():
     ax.set_ylim(-1.2, 1.2)
     ax.set_xlabel(labels[i1])
     ax.set_ylabel(labels[i2])
-    (trail,) = ax.plot([], [], "o", color="r", alpha=0.4, markersize=1)
+    (trail,) = ax.plot([], [], "o", color="r", alpha=0.4, markersize=0.5)
 
     q1_trail, q2_trail = [], []
+    animation_title = ax.set_title("")
 
     def init():
         trail.set_data([], [])
+        animation_title.set_text("")
         return trail
 
     def update(frame):
         q1_trail.append(Observables[i1][frame])
         q2_trail.append(Observables[i2][frame])
         trail.set_data(q1_trail, q2_trail)
+        animation_title.set_text(
+            "Double Pendulum Poincare section ("
+            + labels[i1]
+            + ", "
+            + labels[i2]
+            + ")\nat zero "
+            + labels[i_section]
+            + " frame "
+            + str(frame)
+            + "/"
+            + str(len(Observables[0]))
+        )
+
         return trail
 
     ani = FuncAnimation(
@@ -336,12 +383,8 @@ def poincare_animation():
         blit=False,
         interval=2,
     )
-    plt.title(
-        "Double Pendulum Poincare section ("
-        + labels[i1]
-        + ", "
-        + labels[i2]
-        + ")\nat zero "
-        + labels[i_section]
-    )
+
     plt.show()
+
+    for i in range(len(Observables[0])):
+        print(Observables[:, i])
