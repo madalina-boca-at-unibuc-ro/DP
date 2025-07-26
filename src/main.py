@@ -122,9 +122,6 @@ def pendulum_animation():
     )
     plt.title("Double Pendulum Animation (Lagrange equations)")
 
-    print("Saving pendulum_animation.mp4...")
-    ani.save("pendulum_animation.mp4", writer="ffmpeg", fps=60)
-    print("Animation saved.")
 
     plt.show()
 
@@ -210,7 +207,7 @@ def trajectory_animation():
     index = 5  - p2 (normalized)
     """
 
-    DeltaE = 15
+    DeltaE = 25
     y0 = find_initial_conditions(DeltaE)
 
     t_span = (0, 100)
@@ -268,9 +265,6 @@ def trajectory_animation():
     )
     plt.title("Double Pendulum trajectory (" + labels[i1] + ", " + labels[i2] + ")")
 
-    print("Saving trajectory_animation.mp4...")
-    ani.save("trajectory_animation.mp4", writer="ffmpeg", fps=60)
-    print("Animation saved.")
 
     plt.show()
 
@@ -296,9 +290,9 @@ def poincare_animation():
     """
 
     # Np : The number of points in the Poincare section
-    Np = 10000
+    Np = 100000
 
-    DeltaE = 15
+    DeltaE = 25
     y0 = find_initial_conditions(DeltaE)
     observable_old = compute_observables(y0)
 
@@ -339,6 +333,27 @@ def poincare_animation():
         if den != 0:
             Observables[i] = Observables[i] / den
 
+    fig, ax = plt.subplots()
+    ax.set_aspect("equal")
+    ax.set_xlim(-1.2, 1.2)
+    ax.set_ylim(-1.2, 1.2)
+    ax.set_xlabel(labels[i1])
+    ax.set_ylabel(labels[i2])
+    ax.set_title("Double Pendulum Poincare section ("
+            + labels[i1]
+            + ", "
+            + labels[i2]
+            + ")\n"
+            + "at zero " + labels[i_section]
+            + " ; "
+            + str(len(Observables[0])) + " points")
+    ax.grid(True)
+    ax.plot(Observables[i1], Observables[i2], ",", color="r", alpha=0.2, markersize=0.01)
+
+    plt.savefig("poincare_section.png", dpi = 300)
+    plt.show()
+    plt.close()
+
     # Animation
     fig, ax = plt.subplots()
     ax.set_aspect("equal")
@@ -346,7 +361,7 @@ def poincare_animation():
     ax.set_ylim(-1.2, 1.2)
     ax.set_xlabel(labels[i1])
     ax.set_ylabel(labels[i2])
-    (trail,) = ax.plot([], [], ".", color="r", alpha=0.2, markersize=0.1)
+    (trail,) = ax.plot([], [], ",", color="r", alpha=0.2, markersize=0.01)
 
     q1_trail, q2_trail = [], []
     animation_title = ax.set_title("")
@@ -357,8 +372,9 @@ def poincare_animation():
         return trail
 
     def update(frame):
-        q1_trail.append(Observables[i1][frame])
-        q2_trail.append(Observables[i2][frame])
+        for i in range(0, 10):
+            q1_trail.append(Observables[i1][frame * 10 + i])
+            q2_trail.append(Observables[i2][frame * 10 + i])
         trail.set_data(q1_trail, q2_trail)
         animation_title.set_text(
             "Double Pendulum Poincare section ("
@@ -368,7 +384,7 @@ def poincare_animation():
             + ")\nat zero "
             + labels[i_section]
             + " frame "
-            + str(frame)
+            + str(frame * 10)
             + "/"
             + str(len(Observables[0]))
         )
@@ -378,7 +394,7 @@ def poincare_animation():
     ani = FuncAnimation(
         fig,
         update,
-        frames=len(Observables[0]),
+        frames=len(Observables[0])//10,
         init_func=init,
         blit=False,
         interval=2,
