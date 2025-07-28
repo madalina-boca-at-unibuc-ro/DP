@@ -1,7 +1,6 @@
 # Double Pendulum Simulator
 
-![Double Pendulum Animation Thumbnail](https://via.placeholder.com/600x300.gif?text=Double+Pendulum+Animation)
-*(Consider replacing this placeholder with a small GIF or screenshot of the animation for quick visual impact.)*
+
 
 A Python-based simulation of a double pendulum system, demonstrating chaotic motion using the Lagrangian equations of motion and high-precision numerical integration.
 
