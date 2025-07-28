@@ -29,8 +29,7 @@ The double pendulum is a classic example of a chaotic system in classical mechan
 * **Trajectory Plotting**: Visualizes the system's trajectory in a user-definable phase space (e.g., $\theta_1$ vs $\omega_1$, $\theta_2$ vs $p_2$).
 * **Poincaré Section**: Computes and plots Poincaré sections to reveal the underlying chaotic or periodic nature of the system's phase space.
 * **High-Precision Numerical Integration**: Utilizes SciPy's `solve_ivp` with the 'DOP853' method for robust and accurate integration of the ordinary differential equations.
-* **Chaotic Behavior Demonstration**: Highlights the sensitive dependence on initial conditions, a hallmark of chaotic systems.
-* **Energy Conservation**: (Implicitly, as it's a conservative system modeled via Lagrangian mechanics, though not explicitly stated as a feature in the original README, it's a property of the simulation).
+
 
 ## Physics Background
 
