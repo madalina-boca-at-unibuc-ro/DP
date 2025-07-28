@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from tqdm import tqdm
 import time
+import os
+
+from fractal import calculate_fractal_dimension
 
 # Constants
 g = 10  # m/s^2 (for simplicity g = 10)
@@ -93,6 +96,10 @@ def pendulum_animation():
     ax.set_aspect("equal")
     ax.set_xlim(-2.2, 2.2)
     ax.set_ylim(-2.2, 2.2)
+    ax.set_xlabel("x")
+    ax.set_ylabel("y")
+    ax.set_title("Double Pendulum Animation")
+    ax.grid(True)
     (line,) = ax.plot([], [], "o-", lw=2)
     (trail,) = ax.plot([], [], "r-", alpha=0.4, lw=1)
 
@@ -121,7 +128,6 @@ def pendulum_animation():
         interval=20,
     )
     plt.title("Double Pendulum Animation (Lagrange equations)")
-
 
     plt.show()
 
@@ -176,7 +182,7 @@ def interpolate_observables(observable_old, observable_new, i_section):
     a_2 = observable_new[i_section]
 
     if a_1 * a_2 > 0:
-        print("The section is not crossed")
+        print("Error: The section is not crossed")
         exit()
     else:
         observable = np.zeros(len(observable_old))
@@ -265,11 +271,10 @@ def trajectory_animation():
     )
     plt.title("Double Pendulum trajectory (" + labels[i1] + ", " + labels[i2] + ")")
 
-
     plt.show()
 
 
-def poincare_animation():
+def poincare_animation(folder_name="."):
 
     print("Double Pendulum poincare section")
 
@@ -290,7 +295,7 @@ def poincare_animation():
     """
 
     # Np : The number of points in the Poincare section
-    Np = 100000
+    Np = 10000
 
     DeltaE = 25
     y0 = find_initial_conditions(DeltaE)
@@ -339,20 +344,34 @@ def poincare_animation():
     ax.set_ylim(-1.2, 1.2)
     ax.set_xlabel(labels[i1])
     ax.set_ylabel(labels[i2])
-    ax.set_title("Double Pendulum Poincare section ("
-            + labels[i1]
-            + ", "
-            + labels[i2]
-            + ")\n"
-            + "at zero " + labels[i_section]
-            + " ; "
-            + str(len(Observables[0])) + " points")
+    ax.set_title(
+        "Double Pendulum Poincare section ("
+        + labels[i1]
+        + ", "
+        + labels[i2]
+        + ")\n"
+        + "at zero "
+        + labels[i_section]
+        + " ; "
+        + str(len(Observables[0]))
+        + " points"
+    )
     ax.grid(True)
-    ax.plot(Observables[i1], Observables[i2], ",", color="r", alpha=0.2, markersize=0.01)
-
-    plt.savefig("poincare_section.png", dpi = 300)
+    ax.plot(
+        Observables[i1], Observables[i2], ",", color="r", alpha=0.2, markersize=0.05
+    )
+    fig_name = os.path.join(folder_name, "poincare_section.png")
+    plt.savefig(fig_name, dpi=300)
     plt.show()
     plt.close()
+
+    calculate_fractal_dimension(
+        points=Observables,
+        i1=i1,
+        i2=i2,
+        folder_name=folder_name,
+        num_boxes=6,
+    )
 
     # Animation
     fig, ax = plt.subplots()
@@ -361,7 +380,7 @@ def poincare_animation():
     ax.set_ylim(-1.2, 1.2)
     ax.set_xlabel(labels[i1])
     ax.set_ylabel(labels[i2])
-    (trail,) = ax.plot([], [], ",", color="r", alpha=0.2, markersize=0.01)
+    (trail,) = ax.plot([], [], ",", color="r", alpha=0.2, markersize=0.05)
 
     q1_trail, q2_trail = [], []
     animation_title = ax.set_title("")
@@ -394,7 +413,7 @@ def poincare_animation():
     ani = FuncAnimation(
         fig,
         update,
-        frames=len(Observables[0])//10,
+        frames=len(Observables[0]) // 10,
         init_func=init,
         blit=False,
         interval=2,

@@ -1,6 +1,7 @@
 # Double Pendulum Simulator
 
-
+![Double Pendulum Animation Thumbnail](https://via.placeholder.com/600x300.gif?text=Double+Pendulum+Animation)
+*(Consider replacing this placeholder with a small GIF or screenshot of the animation for quick visual impact.)*
 
 A Python-based simulation of a double pendulum system, demonstrating chaotic motion using the Lagrangian equations of motion and high-precision numerical integration.
 
@@ -30,6 +31,7 @@ The double pendulum is a classic example of a chaotic system in classical mechan
 * **Poincaré Section**: Computes and plots Poincaré sections to reveal the underlying chaotic or periodic nature of the system's phase space.
 * **High-Precision Numerical Integration**: Utilizes SciPy's `solve_ivp` with the 'DOP853' method for robust and accurate integration of the ordinary differential equations.
 * **Chaotic Behavior Demonstration**: Highlights the sensitive dependence on initial conditions, a hallmark of chaotic systems.
+* **Energy Conservation**: (Implicitly, as it's a conservative system modeled via Lagrangian mechanics, though not explicitly stated as a feature in the original README, it's a property of the simulation).
 
 ## Physics Background
 
@@ -70,8 +72,7 @@ The following Python libraries are required:
     ```bash
     pip install numpy scipy matplotlib tqdm
     ```
-3.  **Install FFmpeg:**
-    If you plan to save animations as MP4 files (recommended), you will need FFmpeg installed on your system and accessible via your system's PATH. You can download it from the [official FFmpeg website](https://ffmpeg.org/download.html).
+
 
 ## Usage
 
@@ -91,7 +92,7 @@ Run the simulation using the `run.py` launcher script.
     ```bash
     python run.py animate trajectory
     ```
-    *Output saved to `trajectory_animation.mp4`*
+
 
 3.  **Compute and Display Poincaré Section:**
     Calculates and plots a Poincaré section, providing insights into the system's long-term behavior. The section is taken at a constant value of a chosen observable, as defined by `i_section` in `main.py`'s `poincare_animation()` function. The displayed coordinates are defined by `i1` and `i2`.
@@ -109,7 +110,7 @@ All simulation parameters can be adjusted directly within `src/main.py`.
     * `L1, L2 = 1.0, 1.0` (lengths of the pendulum arms in meters)
 
 * **Initial Conditions:**
-    Initial conditions are determined by the total energy `DeltaE`. The `find_initial_conditions(DeltaE)` function sets `q1_0`, `q2_0`, `omega1_0`, `omega2_0` based on this energy level, handling different initial configurations.
+    Initial conditions are determined by the total energy `DeltaE`. The `find_initial_conditions(DeltaE)` function sets `q1_0`, `q2_0`, `omega1_0`, `omega2_0` based on this energy level, handling different initial configurations. At the moment only one initial condition compatible to a given Delta E is used.
 
 * **Simulation Parameters:**
     * `t_span = (0, tf)`: Tuple defining the simulation duration from 0 to `tf` seconds.
@@ -132,11 +133,21 @@ All simulation parameters can be adjusted directly within `src/main.py`.
 ## Project Structure
 
 
+
 ```
 DP/
 ├── README.md          # This file
 ├── run.py             # Launcher script
 ├── src/
-│   └── main.py       # Main simulation code
+│   └── animation.py       # creates animations
+│   └── fractal.py         # computes the fractal dimension
 └── .gitignore        # Git ignore file
 ```
+
+# Contributing
+
+Contributions are welcome! If you have suggestions for improvements, bug fixes, or new features, please open an issue or submit a pull request.
+
+## License
+
+This project is open-source and available under the [MIT License](LICENSE.md).
