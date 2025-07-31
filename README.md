@@ -34,9 +34,8 @@ The double pendulum is a classic example of a chaotic system in classical mechan
 ## Physics Background
 
 
-# The double pendulum in the Lagrangian formalism
 
-## The Lagrangian
+### The double pendulum in the Lagrangian formalism
 
 We consider two the masses $m_1$ and $m_2$ attached to two rigid rods of
 length $l_1$ and $l_2$ respectively.
@@ -63,7 +62,7 @@ and the potential energy is given by: $$\begin{aligned}
 \end{aligned}$$ The Lagrangian of the double pendulum is given by:
 $$L = T-V = \frac{1}{2}\left(m_1+m_2\right) l_1^2 \dot{\theta}_1^2 + \frac{1}{2} m_2 l_2^2 \dot{\theta}_2^2+m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \cos \left(\theta_1-\theta_2\right) + \left(m_1+m_2\right) g l_1 \cos \theta_1+m_2 g l_2 \cos \theta_2$$
 
-## The equations of motion
+### The equations of motion
 
 The equations of motion of the double pendulum are: $$\begin{aligned}
       \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{\theta}_i}\right)-\frac{\partial L}{\partial \theta_i}=0 \quad i=1,2
