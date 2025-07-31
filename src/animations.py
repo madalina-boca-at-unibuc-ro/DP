@@ -297,13 +297,15 @@ def poincare_animation(folder_name="."):
     # Np : The number of points in the Poincare section
     Np = 10000
 
-    DeltaE = 25
+    DeltaE = 20
     y0 = find_initial_conditions(DeltaE)
     observable_old = compute_observables(y0)
 
     t_0 = 0
     dt = 0.01
     print(f"Calculating {Np} points in the Poincare section")
+
+    num_boxes = 7
 
     Observables = np.zeros((7, Np))
     N_filled_points = 0
@@ -370,7 +372,7 @@ def poincare_animation(folder_name="."):
         i1=i1,
         i2=i2,
         folder_name=folder_name,
-        num_boxes=6,
+        num_boxes=num_boxes,
     )
 
     # Animation

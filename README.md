@@ -33,19 +33,72 @@ The double pendulum is a classic example of a chaotic system in classical mechan
 
 ## Physics Background
 
-The double pendulum consists of two simple pendulums connected in series. It is a canonical example of a system with nonlinear dynamics and chaotic behavior.
 
-The system has two degrees of freedom, typically represented by the angles $\theta_1$ and $\theta_2$ of each pendulum arm with respect to the vertical. The Lagrangian equations of motion are used to describe the system's dynamics:
+# The double pendulum in the Lagrangian formalism
 
-$$\frac{d}{dt} \left( \frac{\partial L}{\partial \dot{q}_i} \right) - \frac{\partial L}{\partial q_i} = 0$$
+## The Lagrangian
 
-For this specific setup (with $M_1=M_2=M$ and $L_1=L_2=L$), the second-order differential equations for $\theta_1$ and $\theta_2$ are:
+We consider two the masses $m_1$ and $m_2$ attached to two rigid rods of
+length $l_1$ and $l_2$ respectively.
 
-$$\frac{d^2\theta_1}{dt^2} = \frac{g \sin\theta_2 \cos(\theta_1-\theta_2) - L \sin(\theta_1-\theta_2) (\dot{\theta}_1^2 \cos(\theta_1-\theta_2) + \dot{\theta}_2^2) - 2 g \sin\theta_1}{L (1 + \sin^2(\theta_1-\theta_2))}$$
+The generalized coordinates of the double pendulum are the angles
+$\theta_1$ and $\theta_2$ of the two pendulums. The cartesian
+coordinates of the masses are given by: $$\begin{aligned}
+       & x_1=l_1 \sin \theta_1                    \\
+       & x_2=l_1 \sin \theta_1+l_2 \sin \theta_2  \\
+       & y_1=-l_1 \cos \theta_1                   \\
+       & y_2=-l_1 \cos \theta_1-l_2 \cos \theta_2
+\end{aligned}$$
 
-$$\frac{d^2\theta_2}{dt^2} = \frac{2 (L \dot{\theta}_1^2 \sin(\theta_1-\theta_2) - g \sin\theta_2 + g \sin\theta_1 \cos(\theta_1-\theta_2)) + L \dot{\theta}_2^2 \sin(\theta_1-\theta_2) \cos(\theta_1-\theta_2)}{L (1 + \sin^2(\theta_1-\theta_2))}$$
+The velocities of the masses are given by: $$\begin{aligned}
+       & \dot{x}_1=l_1 \dot{\theta}_1 \cos \theta_1                                  \\
+       & \dot{x}_2=l_1 \dot{\theta}_1 \cos \theta_1+l_2 \dot{\theta}_2 \cos \theta_2 \\
+       & \dot{y}_1=l_1 \dot{\theta}_1 \sin \theta_1                                  \\
+       & \dot{y}_2=l_1 \dot{\theta}_1 \sin \theta_1+l_2 \dot{\theta}_2 \sin \theta_2
+\end{aligned}$$ The kinetic energy of the double pendulum is given by:
+$$T = \frac{1}{2}m_1\dot{x}_1^2 + \frac{1}{2}m_2\dot{x}_2^2 + \frac{1}{2}m_1\dot{y}_1^2 + \frac{1}{2}m_2\dot{y}_2^2$$
+and the potential energy is given by: $$\begin{aligned}
+      V & =m_1 g y_1+m_2 g y_2                     =-m_1 g l_1 \cos \theta_1-m_2 g\left(l_1 \cos \theta_1+l_2 \cos \theta_2\right) \nonumber \\
+        & =-\left(m_1+m_2\right) g l_1 \cos \theta_1-m_2 g l_2 \cos \theta_2
+\end{aligned}$$ The Lagrangian of the double pendulum is given by:
+$$L = T-V = \frac{1}{2}\left(m_1+m_2\right) l_1^2 \dot{\theta}_1^2 + \frac{1}{2} m_2 l_2^2 \dot{\theta}_2^2+m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \cos \left(\theta_1-\theta_2\right) + \left(m_1+m_2\right) g l_1 \cos \theta_1+m_2 g l_2 \cos \theta_2$$
 
-These are converted into a system of four first-order ODEs for numerical integration: $(\theta_1, \dot{\theta}_1, \theta_2, \dot{\theta}_2)$.
+## The equations of motion
+
+The equations of motion of the double pendulum are: $$\begin{aligned}
+      \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{\theta}_i}\right)-\frac{\partial L}{\partial \theta_i}=0 \quad i=1,2
+\end{aligned}$$ The generalized momenta are given by: $$\begin{aligned}
+       & p_{\theta_1}=\frac{\partial L}{\partial \dot{\theta}_1}=\left(m_1+m_2\right) l_1^2 \dot{\theta}_1+m_2 l_1 l_2 \dot{\theta}_2 \cos \left(\theta_1-\theta_2\right) \\
+       & p_{\theta_2}=\frac{\partial L}{\partial \dot{\theta}_2}=m_2 l_2^2 \dot{\theta}_2+m_2 l_1 l_2 \dot{\theta}_1 \cos \left(\theta_1-\theta_2\right)
+\end{aligned}$$ and their time derivatives are given by: $$\begin{aligned}
+      \frac{d p_{\theta_1}}{d t}= & \left(m_1+m_2\right) l_1^2 \ddot{\theta}_1+m_2 l_1 l_2 \ddot{\theta}_2 \cos \left(\theta_1-\theta_2\right)  -m_2 l_1 l_2 \dot{\theta}_2 \dot{\theta}_1 \sin \left(\theta_1-\theta_2\right)+m_2 l_1 l_2 \dot{\theta}_2^2 \sin \left(\theta_1-\theta_2\right) \\
+      \frac{d p_{\theta_2}}{d t}= & m_2 l_2^2 \ddot{\theta}_2+m_2 l_1 l_2 \ddot{\theta}_1 \cos \left(\theta_1-\theta_2\right)   -m_2 l_1 l_2 \dot{\theta}_1^2 \sin \left(\theta_1-\theta_2\right)+m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)
+\end{aligned}$$ Also using the derivatives of the Lagrangian with
+respect to the coordinates $$\begin{aligned}
+       & \frac{\partial L}{\partial \theta_1}=-m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)-\left(m_1+m_2\right) g l_1 \sin \theta_1 \\
+       & \frac{\partial L}{\partial \theta_2}=m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)-m_2 g l_2 \sin \theta_2
+\end{aligned}$$ We can write the equations of motion as: $$\begin{aligned}
+       & \left(m_1+m_2\right) l_1^2 \ddot{\theta}_1+m_2 l_1 l_2 \ddot{\theta}_2 \cos \left(\theta_1-\theta_2\right)-m_2 l_1 l_2 \dot{\theta}_2 \dot{\theta}_1 \sin \left(\theta_1-\theta_2\right)+m_2 l_1 l_2 \dot{\theta}_2^2 \sin \left(\theta_1-\theta_2\right) \nonumber \\
+       & \qquad   = -m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)-\left(m_1+m_2\right) g l_1 \sin \theta_1                                                                                                                                  \\
+       & m_2 l_2^2 \ddot{\theta}_2+m_2 l_1 l_2 \ddot{\theta}_1 \cos \left(\theta_1-\theta_2\right)   -m_2 l_1 l_2 \dot{\theta}_1^2 \sin \left(\theta_1-\theta_2\right)+m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)\nonumber                \\
+       & \qquad =m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)-m_2 g l_2 \sin \theta_2
+\end{aligned}$$ After some re-arranging we get: $$\begin{aligned}
+       & \ddot{\theta}_1+\frac{m_2}{m_1+m_2}\frac{ l_2}{l_1 } \cos \left(\theta_1-\theta_2\right)\ddot{\theta}_2  = \frac{-m_2 l_1 l_2 \dot{\theta}_2^2 \sin \left(\theta_1-\theta_2\right)-\left(m_1+m_2\right) g l_1 \sin \theta_1 }{(m_1+m_2)l_1^2} \\
+       & \frac{l_1}{l_2}\cos\left(\theta_1-\theta_2\right)\ddot\theta_1+\ddot{\theta}_2=  \frac{m_2 l_1 l_2 \dot{\theta}_1^2 \sin \left(\theta_1-\theta_2\right)-m_2 g l_2 \sin \theta_2}{m_2l_2^2}
+\end{aligned}$$ We introduce the notations: $$\begin{aligned}
+       & c_{12}=\frac{m_2}{m_1+m_2}\frac{ l_2}{l_1 } \cos \left(\theta_1-\theta_2\right), \quad c_{21}=\frac{l_1}{l_2} \cos \left(\theta_1-\theta_2\right),\nonumber                                                                                        \\
+       & C_1=-\frac{l_2}{l_1}\left(\frac{m_2}{m_1+m_2}\right) \dot{\theta}_2^2 \sin \left(\theta_1-\theta_2\right)-\frac{g}{l_1} \sin \theta_1  ,\quad C_2=\frac{l_1}{l_2} \dot{\theta}_1^2 \sin \left(\theta_1-\theta_2\right)-\frac{g}{l_2} \sin \theta_2
+\end{aligned}$$ With these, the above system can be written as:
+$$\begin{aligned}
+       & \ddot{\theta}_1+c_{12}\ddot{\theta}_2=C_1 \\
+       & c_{21}\ddot{\theta}_1+\ddot{\theta}_2=C_2
+\end{aligned}$$
+
+We can solve the above system for $\ddot{\theta}_1$ and
+$\ddot{\theta}_2$ to get: $$\begin{aligned}
+       & \ddot\theta_1 = \frac{C_1-c_{12} C_2}{1-c_{12}c_{21}} \\
+       & \ddot\theta_2 =\frac{C_2-c_{21} C_1}{1-c_{12}c_{21}}
+\end{aligned}$$
 
 ## Requirements
 
@@ -93,7 +146,7 @@ Run the simulation using the `run.py` launcher script.
 
 
 3.  **Compute and Display Poincaré Section:**
-    Calculates and plots a Poincaré section, providing insights into the system's long-term behavior. The section is taken at a constant value of a chosen observable, as defined by `i_section` in `main.py`'s `poincare_animation()` function. The displayed coordinates are defined by `i1` and `i2`.
+    Calculates and plots a Poincaré section, providing insights into the system's long-term behavior. The section is taken at a constant value of a chosen observable, as defined by `i_section` in `main.py`'s `poincare_animation()` function. The displayed coordinates are defined by `i1` and `i2`. Also the fractal dimension of the Poincare section is calculated. 
     ```bash
     python run.py animate Poincare
     ```
@@ -108,7 +161,7 @@ All simulation parameters can be adjusted directly within `src/main.py`.
     * `L1, L2 = 1.0, 1.0` (lengths of the pendulum arms in meters)
 
 * **Initial Conditions:**
-    Initial conditions are determined by the total energy `DeltaE`. The `find_initial_conditions(DeltaE)` function sets `q1_0`, `q2_0`, `omega1_0`, `omega2_0` based on this energy level, handling different initial configurations. At the moment only one initial condition compatible to a given Delta E is used.
+    Initial conditions are determined by the total energy `DeltaE`. The `find_initial_conditions(DeltaE)` function sets `q1_0`, `q2_0`, `omega1_0`, `omega2_0` based on this energy level, handling different initial configurations. Only one initial condition compatible to a given Delta E is used.
 
 * **Simulation Parameters:**
     * `t_span = (0, tf)`: Tuple defining the simulation duration from 0 to `tf` seconds.
