@@ -21,15 +21,15 @@ def lagrange_equations(t, y):
     q1_dot = omega1
     q2_dot = omega2
 
-    alpha1 = L2 / L1 * m2 / (m1 + m2) * np.cos(q1 - q2)
-    alpha2 = L1 / L2 * np.cos(q1 - q2)
-    f1 = -L2 / L1 * m2 / (m1 + m2) * omega2 * omega2 * np.sin(
+    c_12 = L2 / L1 * m2 / (m1 + m2) * np.cos(q1 - q2)
+    c_21 = L1 / L2 * np.cos(q1 - q2)
+    C1 = -L2 / L1 * m2 / (m1 + m2) * omega2 * omega2 * np.sin(
         q1 - q2
     ) - g / L1 * np.sin(q1)
-    f2 = L1 / L2 * omega1 * omega1 * np.sin(q1 - q2) - g / L2 * np.sin(q2)
+    C2 = L1 / L2 * omega1 * omega1 * np.sin(q1 - q2) - g / L2 * np.sin(q2)
 
-    omega1_dot = (f1 - alpha1 * f2) / (1 - alpha1 * alpha2)
-    omega2_dot = (f2 - alpha2 * f1) / (1 - alpha1 * alpha2)
+    omega1_dot = (C1 - c_12 * C2) / (1 - c_12 * c_21)
+    omega2_dot = (C2 - c_21 * C1) / (1 - c_12 * c_21)
 
     return [q1_dot, q2_dot, omega1_dot, omega2_dot]
 
