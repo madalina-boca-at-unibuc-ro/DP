@@ -280,10 +280,10 @@ def poincare_animation(folder_name="."):
 
     # index  of the observable to plot
     i1 = 0
-    i2 = 1
+    i2 = 4
 
     # index of the section of the trajectory to plot
-    i_section = 4
+    i_section = 1
 
     """
     index = 0  - q1 (normalized)
@@ -297,7 +297,7 @@ def poincare_animation(folder_name="."):
     # Np : The number of points in the Poincare section
     Np = 10000
 
-    DeltaE = 20
+    DeltaE = 12
     y0 = find_initial_conditions(DeltaE)
     observable_old = compute_observables(y0)
 
