@@ -76,16 +76,24 @@ $L = T-V = \frac{1}{2}\left(m_1+m_2\right) l_1^2 \dot{\theta}_1^2 + \frac{1}{2} 
 
 ### The equations of motion
 
-The equations of motion of the double pendulum are: $$\begin{aligned}
-      \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{\theta}_i}\right)-\frac{\partial L}{\partial \theta_i}=0 \quad i=1,2
-\end{aligned}$$ The generalized momenta are given by: $$\begin{aligned}
-       & p_{\theta_1}=\frac{\partial L}{\partial \dot{\theta}_1}=\left(m_1+m_2\right) l_1^2 \dot{\theta}_1+m_2 l_1 l_2 \dot{\theta}_2 \cos \left(\theta_1-\theta_2\right) \\
-       & p_{\theta_2}=\frac{\partial L}{\partial \dot{\theta}_2}=m_2 l_2^2 \dot{\theta}_2+m_2 l_1 l_2 \dot{\theta}_1 \cos \left(\theta_1-\theta_2\right)
-\end{aligned}$$ and their time derivatives are given by: $$\begin{aligned}
-      \frac{d p_{\theta_1}}{d t}= & \left(m_1+m_2\right) l_1^2 \ddot{\theta}_1+m_2 l_1 l_2 \ddot{\theta}_2 \cos \left(\theta_1-\theta_2\right)  -m_2 l_1 l_2 \dot{\theta}_2 \dot{\theta}_1 \sin \left(\theta_1-\theta_2\right)+m_2 l_1 l_2 \dot{\theta}_2^2 \sin \left(\theta_1-\theta_2\right) \\
-      \frac{d p_{\theta_2}}{d t}= & m_2 l_2^2 \ddot{\theta}_2+m_2 l_1 l_2 \ddot{\theta}_1 \cos \left(\theta_1-\theta_2\right)   -m_2 l_1 l_2 \dot{\theta}_1^2 \sin \left(\theta_1-\theta_2\right)+m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)
-\end{aligned}$$ Also using the derivatives of the Lagrangian with
-respect to the coordinates $$\begin{aligned}
+The equations of motion of the double pendulum are: 
+
+$\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{\theta}_i}\right)-\frac{\partial L}{\partial \theta_i}=0 \quad i=1,2
+$ 
+
+The generalized momenta are given by: 
+
+$ p_{\theta_1}=\frac{\partial L}{\partial \dot{\theta}_1}=\left(m_1+m_2\right) l_1^2 \dot{\theta}_1+m_2 l_1 l_2 \dot{\theta}_2 \cos \left(\theta_1-\theta_2\right)$ 
+
+$p_{\theta_2}=\frac{\partial L}{\partial \dot{\theta}_2}=m_2 l_2^2 \dot{\theta}_2+m_2 l_1 l_2 \dot{\theta}_1 \cos \left(\theta_1-\theta_2\right)$ 
+
+and their time derivatives are given by: 
+
+$\frac{d p_{\theta_1}}{d t}=  \left(m_1+m_2\right) l_1^2 \ddot{\theta}_1+m_2 l_1 l_2 \ddot{\theta}_2 \cos \left(\theta_1-\theta_2\right)  -m_2 l_1 l_2 \dot{\theta}_2 \dot{\theta}_1 \sin \left(\theta_1-\theta_2\right)+m_2 l_1 l_2 \dot{\theta}_2^2 \sin \left(\theta_1-\theta_2\right)$ 
+
+$\frac{d p_{\theta_2}}{d t}=  m_2 l_2^2 \ddot{\theta}_2+m_2 l_1 l_2 \ddot{\theta}_1 \cos \left(\theta_1-\theta_2\right)   -m_2 l_1 l_2 \dot{\theta}_1^2 \sin \left(\theta_1-\theta_2\right)+m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)$ 
+
+Also using the derivatives of the Lagrangian with respect to the coordinates $$\begin{aligned}
        & \frac{\partial L}{\partial \theta_1}=-m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)-\left(m_1+m_2\right) g l_1 \sin \theta_1 \\
        & \frac{\partial L}{\partial \theta_2}=m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)-m_2 g l_2 \sin \theta_2
 \end{aligned}$$ We can write the equations of motion as: $$\begin{aligned}
@@ -96,22 +104,25 @@ respect to the coordinates $$\begin{aligned}
 \end{aligned}$$ After some re-arranging we get: $$\begin{aligned}
        & \ddot{\theta}_1+\frac{m_2}{m_1+m_2}\frac{ l_2}{l_1 } \cos \left(\theta_1-\theta_2\right)\ddot{\theta}_2  = \frac{-m_2 l_1 l_2 \dot{\theta}_2^2 \sin \left(\theta_1-\theta_2\right)-\left(m_1+m_2\right) g l_1 \sin \theta_1 }{(m_1+m_2)l_1^2} \\
        & \frac{l_1}{l_2}\cos\left(\theta_1-\theta_2\right)\ddot\theta_1+\ddot{\theta}_2=  \frac{m_2 l_1 l_2 \dot{\theta}_1^2 \sin \left(\theta_1-\theta_2\right)-m_2 g l_2 \sin \theta_2}{m_2l_2^2}
-\end{aligned}$$ We introduce the notations: $$\begin{aligned}
-       & c_{12}=\frac{m_2}{m_1+m_2}\frac{ l_2}{l_1 } \cos \left(\theta_1-\theta_2\right), \quad c_{21}=\frac{l_1}{l_2} \cos \left(\theta_1-\theta_2\right),\nonumber                                                                                        \\
-       & C_1=-\frac{l_2}{l_1}\left(\frac{m_2}{m_1+m_2}\right) \dot{\theta}_2^2 \sin \left(\theta_1-\theta_2\right)-\frac{g}{l_1} \sin \theta_1  ,\quad C_2=\frac{l_1}{l_2} \dot{\theta}_1^2 \sin \left(\theta_1-\theta_2\right)-\frac{g}{l_2} \sin \theta_2
-\end{aligned}$$ With these, the above system can be written as:
+\end{aligned}$$ We introduce the notations: 
 
+$ c_{12}=\frac{m_2}{m_1+m_2}\frac{ l_2}{l_1 } \cos \left(\theta_1-\theta_2\right), \quad c_{21}=\frac{l_1}{l_2} \cos \left(\theta_1-\theta_2\right)$
+
+$C_1=-\frac{l_2}{l_1}\left(\frac{m_2}{m_1+m_2}\right) \dot{\theta}_2^2 \sin \left(\theta_1-\theta_2\right)-\frac{g}{l_1} \sin \theta_1  ,\quad C_2=\frac{l_1}{l_2} \dot{\theta}_1^2 \sin \left(\theta_1-\theta_2\right)-\frac{g}{l_2} \sin \theta_2
 $
-        \ddot{\theta}_1+c_{12}\ddot{\theta}_2=C_1  $ 
+
+ With these, the above system can be written as:
+
+$\ddot{\theta}_1+c_{12}\ddot{\theta}_2=C_1  $ 
     
-        $  c_{21}\ddot{\theta}_1+\ddot{\theta}_2=C_2$
+$c_{21}\ddot{\theta}_1+\ddot{\theta}_2=C_2$
 
 We can solve the above system for $\ddot{\theta}_1$ and
 $\ddot{\theta}_2$ to get:
 
- $\ddot\theta_1 = \frac{C_1-c_{12} C_2}{1-c_{12}c_{21}} $  and 
+$\ddot\theta_1 = \frac{C_1-c_{12} C_2}{1-c_{12}c_{21}}$  and 
 
-        $\ddot\theta_2 =\frac{C_2-c_{21} C_1}{1-c_{12}c_{21}}$
+$\ddot\theta_2 =\frac{C_2-c_{21} C_1}{1-c_{12}c_{21}}$
 
 ## Requirements
 
