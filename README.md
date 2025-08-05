@@ -83,7 +83,7 @@ $
 
 The generalized momenta are given by: 
 
-$ p_{\theta_1}=\frac{\partial L}{\partial \dot{\theta}_1}=\left(m_1+m_2\right) l_1^2 \dot{\theta}_1+m_2 l_1 l_2 \dot{\theta}_2 \cos \left(\theta_1-\theta_2\right)$ 
+$p_{\theta_1}=\frac{\partial L}{\partial \dot{\theta}_1}=\left(m_1+m_2\right) l_1^2 \dot{\theta}_1+m_2 l_1 l_2 \dot{\theta}_2 \cos \left(\theta_1-\theta_2\right)$ 
 
 $p_{\theta_2}=\frac{\partial L}{\partial \dot{\theta}_2}=m_2 l_2^2 \dot{\theta}_2+m_2 l_1 l_2 \dot{\theta}_1 \cos \left(\theta_1-\theta_2\right)$ 
 
@@ -93,18 +93,23 @@ $\frac{d p_{\theta_1}}{d t}=  \left(m_1+m_2\right) l_1^2 \ddot{\theta}_1+m_2 l_1
 
 $\frac{d p_{\theta_2}}{d t}=  m_2 l_2^2 \ddot{\theta}_2+m_2 l_1 l_2 \ddot{\theta}_1 \cos \left(\theta_1-\theta_2\right)   -m_2 l_1 l_2 \dot{\theta}_1^2 \sin \left(\theta_1-\theta_2\right)+m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)$ 
 
-Also using the derivatives of the Lagrangian with respect to the coordinates $$\begin{aligned}
-       & \frac{\partial L}{\partial \theta_1}=-m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)-\left(m_1+m_2\right) g l_1 \sin \theta_1 \\
-       & \frac{\partial L}{\partial \theta_2}=m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)-m_2 g l_2 \sin \theta_2
-\end{aligned}$$ We can write the equations of motion as: $$\begin{aligned}
-       & \left(m_1+m_2\right) l_1^2 \ddot{\theta}_1+m_2 l_1 l_2 \ddot{\theta}_2 \cos \left(\theta_1-\theta_2\right)-m_2 l_1 l_2 \dot{\theta}_2 \dot{\theta}_1 \sin \left(\theta_1-\theta_2\right)+m_2 l_1 l_2 \dot{\theta}_2^2 \sin \left(\theta_1-\theta_2\right) \nonumber \\
-       & \qquad   = -m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)-\left(m_1+m_2\right) g l_1 \sin \theta_1                                                                                                                                  \\
-       & m_2 l_2^2 \ddot{\theta}_2+m_2 l_1 l_2 \ddot{\theta}_1 \cos \left(\theta_1-\theta_2\right)   -m_2 l_1 l_2 \dot{\theta}_1^2 \sin \left(\theta_1-\theta_2\right)+m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)\nonumber                \\
-       & \qquad =m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)-m_2 g l_2 \sin \theta_2
-\end{aligned}$$ After some re-arranging we get: $$\begin{aligned}
-       & \ddot{\theta}_1+\frac{m_2}{m_1+m_2}\frac{ l_2}{l_1 } \cos \left(\theta_1-\theta_2\right)\ddot{\theta}_2  = \frac{-m_2 l_1 l_2 \dot{\theta}_2^2 \sin \left(\theta_1-\theta_2\right)-\left(m_1+m_2\right) g l_1 \sin \theta_1 }{(m_1+m_2)l_1^2} \\
-       & \frac{l_1}{l_2}\cos\left(\theta_1-\theta_2\right)\ddot\theta_1+\ddot{\theta}_2=  \frac{m_2 l_1 l_2 \dot{\theta}_1^2 \sin \left(\theta_1-\theta_2\right)-m_2 g l_2 \sin \theta_2}{m_2l_2^2}
-\end{aligned}$$ We introduce the notations: 
+Also using the derivatives of the Lagrangian with respect to the coordinates 
+$\frac{\partial L}{\partial \theta_1}=-m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)-\left(m_1+m_2\right) g l_1 \sin \theta_1$ 
+
+$\frac{\partial L}{\partial \theta_2}=m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)-m_2 g l_2 \sin \theta_2$ 
+
+We can write the equations of motion as: 
+
+$\left(m_1+m_2\right) l_1^2 \ddot{\theta}_1+m_2 l_1 l_2 \ddot{\theta}_2 \cos \left(\theta_1-\theta_2\right)-m_2 l_1 l_2 \dot{\theta}_2 \dot{\theta}_1 \sin \left(\theta_1-\theta_2\right)+m_2 l_1 l_2 \dot{\theta}_2^2 \sin \left(\theta_1-\theta_2\right)  = -m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)-\left(m_1+m_2\right) g l_1 \sin \theta_1   m_2 l_2^2$ 
+
+$\ddot{\theta}_2+m_2 l_1 l_2 \ddot{\theta}_1 \cos \left(\theta_1-\theta_2\right)   -m_2 l_1 l_2 \dot{\theta}_1^2 \sin \left(\theta_1-\theta_2\right)+m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right) \qquad =m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \sin \left(\theta_1-\theta_2\right)-m_2 g l_2 \sin \theta_2$
+
+ After some re-arranging we get: 
+ 
+ $\ddot{\theta}_1+\frac{m_2}{m_1+m_2}\frac{ l_2}{l_1 } \cos \left(\theta_1-\theta_2\right)\ddot{\theta}_2  = \frac{-m_2 l_1 l_2 \dot{\theta}_2^2 \sin \left(\theta_1-\theta_2\right)-\left(m_1+m_2\right) g l_1 \sin \theta_1 }{(m_1+m_2)l_1^2}$ 
+ 
+$\frac{l_1}{l_2}\cos\left(\theta_1-\theta_2\right)\ddot\theta_1+\ddot{\theta}_2=  \frac{m_2 l_1 l_2 \dot{\theta}_1^2 \sin \left(\theta_1-\theta_2\right)-m_2 g l_2 \sin \theta_2}{m_2l_2^2}$ 
+We introduce the notations: 
 
 $ c_{12}=\frac{m_2}{m_1+m_2}\frac{ l_2}{l_1 } \cos \left(\theta_1-\theta_2\right), \quad c_{21}=\frac{l_1}{l_2} \cos \left(\theta_1-\theta_2\right)$
 
