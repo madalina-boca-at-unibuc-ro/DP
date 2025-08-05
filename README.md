@@ -44,34 +44,35 @@ The generalized coordinates of the double pendulum are the angles
 $\theta_1$ and $\theta_2$ of the two pendulums. The cartesian
 coordinates of the masses are given by: 
 
-$ x_1=l_1 \sin \theta_1                 $
+$x_1=l_1 \sin \theta_1                 $
 
  $x_2=l_1 \sin \theta_1+l_2 \sin \theta_2  $
 
- $ y_1=-l_1 \cos \theta_1              $
+ $y_1=-l_1 \cos \theta_1              $
 
- $ y_2=-l_1 \cos \theta_1-l_2 \cos \theta_2$
+ $y_2=-l_1 \cos \theta_1-l_2 \cos \theta_2$
 
 The velocities of the masses are given by: 
 
-$ \dot{x}_1=l_1 \dot{\theta}_1 \cos \theta_1      $ 
+$\dot{x}_1=l_1 \dot{\theta}_1 \cos \theta_1      $ 
 
-$ \dot{x}_2=l_1 \dot{\theta}_1 \cos \theta_1+l_2 \dot{\theta}_2 \cos \theta_2$
+$\dot{x}_2=l_1 \dot{\theta}_1 \cos \theta_1+l_2 \dot{\theta}_2 \cos \theta_2$
 
- $ \dot{y}_1=l_1 \dot{\theta}_1 \sin \theta_1         $
+ $\dot{y}_1=l_1 \dot{\theta}_1 \sin \theta_1         $
  
-  $ \dot{y}_2=l_1 \dot{\theta}_1 \sin \theta_1+l_2 \dot{\theta}_2 \sin \theta_2$ 
+  $\dot{y}_2=l_1 \dot{\theta}_1 \sin \theta_1+l_2 \dot{\theta}_2 \sin \theta_2$ 
   
   The kinetic energy of the double pendulum is given by:
 
 $T = \frac{1}{2}m_1\dot{x}_1^2 + \frac{1}{2}m_2\dot{x}_2^2 + \frac{1}{2}m_1\dot{y}_1^2 + \frac{1}{2}m_2\dot{y}_2^2$
 
 and the potential energy is given by:
- $  V  =m_1 g y_1+m_2 g y_2                     =-m_1 g l_1 \cos \theta_1-m_2 g\left(l_1 \cos \theta_1+l_2 \cos \theta_2\right)  =-\left(m_1+m_2\right) g l_1 \cos \theta_1-m_2 g l_2 \cos \theta_2
-$ 
+
+ $V  =m_1 g y_1+m_2 g y_2                     =-m_1 g l_1 \cos \theta_1-m_2 g\left(l_1 \cos \theta_1+l_2 \cos \theta_2\right)  =-\left(m_1+m_2\right) g l_1 \cos \theta_1-m_2 g l_2 \cos \theta_2$ 
 
 The Lagrangian of the double pendulum is given by:
-$$L = T-V = \frac{1}{2}\left(m_1+m_2\right) l_1^2 \dot{\theta}_1^2 + \frac{1}{2} m_2 l_2^2 \dot{\theta}_2^2+m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \cos \left(\theta_1-\theta_2\right) + \left(m_1+m_2\right) g l_1 \cos \theta_1+m_2 g l_2 \cos \theta_2$$
+
+$L = T-V = \frac{1}{2}\left(m_1+m_2\right) l_1^2 \dot{\theta}_1^2 + \frac{1}{2} m_2 l_2^2 \dot{\theta}_2^2+m_2 l_1 l_2 \dot{\theta}_1 \dot{\theta}_2 \cos \left(\theta_1-\theta_2\right) + \left(m_1+m_2\right) g l_1 \cos \theta_1+m_2 g l_2 \cos \theta_2$
 
 ### The equations of motion
 
@@ -108,9 +109,9 @@ $
 We can solve the above system for $\ddot{\theta}_1$ and
 $\ddot{\theta}_2$ to get:
 
- $\ddot\theta_1 = \frac{C_1-c_{12} C_2}{1-c_{12}c_{21}}  $  and 
+ $\ddot\theta_1 = \frac{C_1-c_{12} C_2}{1-c_{12}c_{21}} $  and 
 
-        $ \ddot\theta_2 =\frac{C_2-c_{21} C_1}{1-c_{12}c_{21}}$
+        $\ddot\theta_2 =\frac{C_2-c_{21} C_1}{1-c_{12}c_{21}}$
 
 ## Requirements
 
