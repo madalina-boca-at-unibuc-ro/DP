@@ -111,7 +111,7 @@ $\ddot{\theta}_2+m_2 l_1 l_2 \ddot{\theta}_1 \cos \left(\theta_1-\theta_2\right)
 $\frac{l_1}{l_2}\cos\left(\theta_1-\theta_2\right)\ddot\theta_1+\ddot{\theta}_2=  \frac{m_2 l_1 l_2 \dot{\theta}_1^2 \sin \left(\theta_1-\theta_2\right)-m_2 g l_2 \sin \theta_2}{m_2l_2^2}$ 
 We introduce the notations: 
 
-$ c_{12}=\frac{m_2}{m_1+m_2}\frac{ l_2}{l_1 } \cos \left(\theta_1-\theta_2\right), \quad c_{21}=\frac{l_1}{l_2} \cos \left(\theta_1-\theta_2\right)$
+$c_{12}=\frac{m_2}{m_1+m_2}\frac{ l_2}{l_1 } \cos \left(\theta_1-\theta_2\right), \quad c_{21}=\frac{l_1}{l_2} \cos \left(\theta_1-\theta_2\right)$
 
 $C_1=-\frac{l_2}{l_1}\left(\frac{m_2}{m_1+m_2}\right) \dot{\theta}_2^2 \sin \left(\theta_1-\theta_2\right)-\frac{g}{l_1} \sin \theta_1  ,\quad C_2=\frac{l_1}{l_2} \dot{\theta}_1^2 \sin \left(\theta_1-\theta_2\right)-\frac{g}{l_2} \sin \theta_2
 $
